@@ -26,3 +26,24 @@ Follows `../docs/DESIGN_LANGUAGE.md` (corporate-site read): serif display + mono
 ## Required before launch
 
 Complete the Privacy Policy and Terms of Service pages, and finalize the apps table entries — Apple uses this site to verify company legitimacy (see `../docs/ADEDOYIN_ROADMAP.md`).
+
+## Deployment (live at GitHub Pages)
+
+- Live URL: https://neonfila.github.io/neonfila_website/
+- Pipeline: `.github/workflows/deploy.yml` — pushes to `main` build and publish `dist/` automatically.
+
+### NOTE: repo was made PUBLIC to enable Pages (2026-10-15)
+
+GitHub Pages is not available on our plan for **private** repos, so `neonfila_website`
+was switched to public (`gh repo edit Neonfila/neonfila_website --visibility public`).
+
+If we flip it back to **private**, the live site will stop updating / go dark on GitHub Pages.
+Options when we continue:
+
+1. Keep it public (recommended for a corporate site — no secrets inside), or
+2. Upgrade the GitHub plan so private repos get Pages, or
+3. Keep repo private + host `dist/` elsewhere (Vercel/Netlify free tier, or the
+   studio's own hosting) — the build is portable (`npm run build`), zero code change.
+
+Also considered for later: custom domain wiring (CNAME + Pages custom-domain
+settings; needs DNS panel access).
