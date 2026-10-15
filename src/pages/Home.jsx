@@ -116,7 +116,7 @@ export default function Home() {
                 <li key={a.name}>
                   <span className="app-name">{a.name}</span>
                   <span className="app-desc">{a.desc}</span>
-                  <span className="status" data-status={a.status}>{a.statusLabel}</span>
+                  <span className="status" data-status={a.status}>{a.statusLabel}{a.live ? '' : null}</span>
                 </li>
               ))}
             </ul>
