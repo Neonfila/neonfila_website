@@ -1,0 +1,303 @@
+/* NeonFila corporate site — pitch blue, chalk text, solar orange as the single accent.
+   Editorial serif display + system sans body + mono labels. Hairline structure, no gradients. */
+
+:root {
+    --ink: #0A0E1A;            /* Pitch Blue */
+    --ink-raise: #101626;      /* tonal depth, not a new color */
+    --chalk: #F8F9FA;          /* Chalk White */
+    --chalk-dim: #A9AFBC;
+    --orange: #FF4500;         /* Solar Orange — the one accent */
+    --teal: #00F7FE;           /* Electric Teal — status signal only */
+    --hairline: rgba(248, 249, 250, 0.14);
+    --display: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    --body: system-ui, -apple-system, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    background: var(--ink);
+    color: var(--chalk);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+}
+
+/* skip link: visible on focus, out of the way otherwise */
+.skip {
+    position: absolute; left: -9999px; top: 0;
+    background: var(--orange); color: var(--ink);
+    padding: 0.5rem 1rem; font-family: var(--mono); font-size: 0.8rem;
+    z-index: 10;
+}
+.skip:focus { left: 0; }
+
+/* ── header ─────────────────────────────────────────── */
+.site-header nav {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 0.75rem;
+    padding: calc(1rem + env(safe-area-inset-top)) 6vw 1rem;
+    border-bottom: 1px solid var(--hairline);
+}
+
+.brand-pill { display: block; height: 22px; width: auto; }
+
+nav ul {
+    display: flex; gap: 1.75rem; list-style: none;
+    font-family: var(--mono); font-size: 0.8rem;
+    text-transform: uppercase; letter-spacing: 0.1em;
+}
+nav a { color: var(--chalk-dim); text-decoration: none; }
+
+/* hover is a pointer-device courtesy only — touch never sees sticky states */
+@media (hover: hover) {
+    nav a:hover, footer a:hover, .mail:hover { color: var(--orange); }
+}
+
+/* ── hero: asymmetric 7/4 with a hairline between ─────── */
+.hero {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+    gap: 4rem; align-items: end;
+    padding: 10vh 6vw 8vh;
+}
+
+.kicker {
+    font-family: var(--mono); font-size: 0.8rem;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--orange);
+    margin-bottom: 1.75rem;
+}
+
+h1 {
+    font-family: var(--display);
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 0.98; font-weight: 500;
+    letter-spacing: -0.01em;
+    margin-bottom: 2rem;
+}
+
+.lede { max-width: 34em; color: var(--chalk-dim); }
+.lede + .creed { margin-top: 2.5rem; }
+
+.creed {
+    font-family: var(--mono); font-size: 0.85rem;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--chalk);
+    border-left: 2px solid var(--orange);
+    padding-left: 1rem;
+}
+
+.hero-index { border-left: 1px solid var(--hairline); padding-left: 2.5rem; }
+.hero-index ol {
+    list-style: none; counter-reset: idx;
+    font-family: var(--mono); font-size: 0.85rem;
+}
+.hero-index li {
+    counter-increment: idx;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--hairline);
+}
+.hero-index li::before {
+    content: "0" counter(idx) "  ";
+    color: var(--orange);
+}
+.hero-index a { color: var(--chalk-dim); text-decoration: none; }
+
+/* ── sections: numbered, hairline-topped, generous air ── */
+main > section {
+    border-top: 1px solid var(--hairline);
+    padding: 7rem 6vw;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 6fr);
+    gap: 3rem;
+}
+
+.section-number {
+    font-family: var(--mono); font-size: 0.85rem;
+    color: var(--orange); letter-spacing: 0.1em;
+}
+
+h2 {
+    font-family: var(--display);
+    font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+    font-weight: 500; line-height: 1.15;
+    margin-bottom: 1.25rem;
+}
+
+.split p { max-width: 38em; }
+
+/* operating model: mono definition rows, not three equal cards */
+.operating { margin-top: 2.5rem; border-top: 1px solid var(--hairline); }
+.operating > div {
+    display: grid; grid-template-columns: 10rem 1fr;
+    gap: 1.5rem; padding: 0.9rem 0;
+    border-bottom: 1px solid var(--hairline);
+}
+.operating dt {
+    font-family: var(--mono); font-size: 0.8rem;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--chalk-dim);
+}
+.operating dd { color: var(--chalk); }
+
+/* apps: a precise table, not a card trio */
+.app-list { list-style: none; border-top: 1px solid var(--hairline); }
+.app-list li {
+    display: grid;
+    grid-template-columns: minmax(8rem, 14rem) 1fr minmax(7rem, auto);
+    gap: 1.5rem; align-items: baseline;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--hairline);
+}
+.app-name { font-family: var(--display); font-size: 1.35rem; }
+.app-desc { color: var(--chalk-dim); font-size: 0.95rem; }
+.status {
+    font-family: var(--mono); font-size: 0.72rem;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    white-space: nowrap;
+}
+.status[data-status="dev"] { color: var(--teal); }
+.status[data-status="idea"] { color: var(--chalk-dim); }
+.status[data-status="draft"] { color: var(--orange); }
+
+.mail {
+    color: var(--orange); text-decoration: none;
+    border-bottom: 1px solid var(--orange);
+    overflow-wrap: anywhere;   /* long addresses break, never overflow */
+}
+
+/* ── footer ──────────────────────────────────────────── */
+footer {
+    border-top: 1px solid var(--hairline);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    padding: 2rem 6vw calc(2rem + env(safe-area-inset-bottom));
+    font-family: var(--mono); font-size: 0.78rem;
+    color: var(--chalk-dim);
+}
+footer ul { display: flex; gap: 1.5rem; list-style: none; }
+footer a { color: var(--chalk-dim); text-decoration: none; }
+
+/* ── the one motion: sections rise once, calm out ─────── */
+.rise {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 500ms cubic-bezier(0.22, 1, 0.36, 1),
+                transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.rise.is-visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .rise { opacity: 1; transform: none; transition: none; }
+}
+
+/* ── legal pages: prose with a measure, shared voice ──── */
+main.legal { padding: 5rem 6vw; border-top: 1px solid var(--hairline); }
+main.legal h1 {
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    margin-bottom: 1.5rem;
+}
+main.legal p { max-width: 42em; color: var(--chalk-dim); }
+
+/* ── small screens: single column, index folds under ── */
+@media (max-width: 820px) {
+    .hero { grid-template-columns: 1fr; gap: 2.5rem; align-items: start; }
+    .hero-index { border-left: 0; padding-left: 0; }
+    main > section { grid-template-columns: 1fr; gap: 1.25rem; padding: 4.5rem 6vw; }
+    .app-list li { grid-template-columns: 1fr; gap: 0.35rem; }
+    .operating > div { grid-template-columns: 1fr; gap: 0.2rem; }
+}
+
+/* keyboard focus: always visible, never suppressed (WCAG 2.4.7) */
+a:focus-visible,
+button.linklike:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+/* scroll buttons read as links (in-page jumps don't own the URL hash) */
+button.linklike {
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    cursor: pointer;
+}
+
+/* break-ui guard: worst-case names/emails never blow out the grid */
+.app-name, .app-desc, .operating dd, .mail { overflow-wrap: anywhere; min-width: 0; }
+.app-list li { min-width: 0; }
+h1, h2 { overflow-wrap: anywhere; }
+
+/* ── studio tape: the creed between hero and sections ── */
+.tape {
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    overflow: hidden;
+    padding: 0.7rem 0;
+    background: var(--ink-raise);
+}
+.tape-row { display: flex; width: max-content; animation: tape 36s linear infinite; }
+.tape-run {
+    font-family: var(--mono); font-size: 0.78rem;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--chalk-dim); white-space: nowrap;
+}
+.tape-run i { font-style: normal; color: var(--orange); padding: 0 0.9em; }
+@keyframes tape { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+.visually-hidden {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ── hero strike: cross out "apps", then highlight "solutions" ── */
+.strike { display: inline-block; position: relative; }
+.strike-word {
+    display: inline-block; position: relative; z-index: 1;
+    color: var(--chalk-dim);
+    transition: color 700ms cubic-bezier(0.22, 1, 0.36, 1) 900ms;
+}
+.strike-line {
+    position: absolute; left: -2%; right: -2%;
+    top: 54%; height: 0.09em;
+    background: var(--orange);
+    transform: scaleX(0); transform-origin: left center;
+    animation: strike-in 650ms cubic-bezier(0.22, 1, 0.36, 1) 700ms forwards;
+}
+@keyframes strike-in { to { transform: scaleX(1); } }
+.strike-line::after {
+    content: ""; position: absolute; top: -0.06em; left: -0.04em;
+    width: 0.22em; height: 0.22em;
+    background: var(--orange);
+    border-radius: 50% 40% 55% 45%;
+    transform: rotate(-12deg);
+}
+.hlword {
+    /* Solar Orange marker box over the word — ink text keeps 5.6:1+ */
+    background: linear-gradient(var(--orange), var(--orange)) no-repeat 0 58% / 100% 1.06em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    padding: 0 0.24em; color: var(--ink);
+    background-size: 100% 1.06em;
+    animation: hl-in 700ms cubic-bezier(0.22, 1, 0.36, 1) 1.35s backwards;
+}
+@keyframes hl-in { from { background-size: 0% 1.06em; } }
+
+@media (prefers-reduced-motion: reduce) {
+    .strike-line { animation: none; transform: scaleX(1); }
+    .hlword { animation: none; }
+    .tape-row { animation: none; transform: none; }
+}
