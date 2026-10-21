@@ -20,7 +20,10 @@ const OPERATING = [
   { term: 'Decide', detail: 'Traction scales it. Silence kills it.' },
 ]
 
-// one intentional transition: sections rise in once, calm, reduced-motion safe
+// one intentional transition: sections rise in once, calm, reduced-motion safe.
+// plus native cursor spotlights (hero glow + app-row light, pointer-fine only):
+// CSS vars follow the pointer, tonal chalk light tracks it — the "expensive"
+// dark-UI mechanic from the premium component libraries, house colors only.
 function useRise() {
   const ref = useRef(null)
   useEffect(() => {
@@ -36,6 +39,25 @@ function useRise() {
       })
     }, { threshold: 0.15 })
     sections.forEach(s => io.observe(s))
+
+    // cursor spotlights: hero (--hx/--hy, big wash) + app rows (--mx/--my, per-row)
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      const tracked = [
+        [root.querySelector('.hero'), 'hx', 'hy'],
+        [root.querySelector('.app-list'), 'mx', 'my'],
+      ].filter(([el]) => el)
+      const handlerFor = (el, xKey, yKey) => e => {
+        const r = el.getBoundingClientRect()
+        el.style.setProperty(`--${xKey}`, `${e.clientX - r.left}px`)
+        el.style.setProperty(`--${yKey}`, `${e.clientY - r.top}px`)
+      }
+      const cleanups = tracked.map(([el, xKey, yKey]) => {
+        const handler = handlerFor(el, xKey, yKey)
+        el.addEventListener('mousemove', handler)
+        return () => el.removeEventListener('mousemove', handler)
+      })
+      return () => { io.disconnect(); cleanups.forEach(c => c()) }
+    }
     return () => io.disconnect()
   }, [])
   return ref

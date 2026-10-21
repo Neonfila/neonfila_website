@@ -63,10 +63,25 @@ nav a { color: var(--chalk-dim); text-decoration: none; }
 
 /* ── hero: asymmetric 7/4 with a hairline between ─────── */
 .hero {
+    position: relative;
     display: grid;
     grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
     gap: 4rem; align-items: end;
     padding: 10vh 6vw 8vh;
+}
+
+/* hero cursor glow (pointer-fine only): a wide tonal light follows the pointer
+   across the whole hero. Inks only — chalk at 8%, the same tonal step family as
+   --ink-raise. Visible by design: this is the page's one showpiece motion. */
+@media (hover: hover) and (pointer: fine) {
+    .hero::before {
+        content: ""; position: absolute; inset: 0; pointer-events: none;
+        opacity: 0;
+        transition: opacity 300ms var(--ease-standard);
+        background: radial-gradient(24rem circle at var(--hx, 75%) var(--hy, 30%),
+            rgba(248, 249, 250, 0.08), transparent 65%);
+    }
+    .hero:hover::before { opacity: 1; }
 }
 
 .kicker {
@@ -156,6 +171,21 @@ h2 {
     gap: 1.5rem; align-items: baseline;
     padding: 1.1rem 0;
     border-bottom: 1px solid var(--hairline);
+}
+
+/* cursor spotlight (pointer-fine only): a tonal wash of chalk — never a color —
+   follows the pointer inside the row the cursor is over. Bright enough to read
+   at a glance; static and harmless if --mx/--my are absent. */
+@media (hover: hover) and (pointer: fine) {
+    .app-list li { position: relative; }
+    .app-list li::after {
+        content: ""; position: absolute; inset: 0; pointer-events: none;
+        opacity: 0;                       /* lights up only under the cursor (:hover) */
+        transition: opacity var(--dur-fast) var(--ease-standard);
+        background: radial-gradient(13rem circle at var(--mx, 50%) var(--my, 50%),
+            rgba(248, 249, 250, 0.09), transparent 70%);
+    }
+    .app-list li:hover::after { opacity: 1; }
 }
 .app-name { font-family: var(--display); font-size: 1.35rem; }
 .app-desc { color: var(--chalk-dim); font-size: 0.95rem; }
