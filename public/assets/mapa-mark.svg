@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!--
+    Mapa mark — "the traced first letter".
+    A bold lowercase m drawn as one finger-traced stroke (round caps, like the
+    tracing ink) with the orange start dot where the child begins.
+    Colors: field Pitch Blue #0A0E1A · ink Chalk White #F8F9FA · accent Solar Orange #FF4500.
+    Clear space: 1/2 the stem width (60 units) on all sides. Min size: 16px.
+  -->
+  <rect x="0" y="0" width="1024" height="1024" rx="230" fill="#0A0E1A"/>
+  <path d="M320 300 L320 724 L320 430 A96 96 0 0 1 512 430 L512 724 L512 430 A96 96 0 0 1 704 430 L704 724"
+        fill="none" stroke="#F8F9FA" stroke-width="120" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="320" cy="300" r="72" fill="#FF4500"/>
+</svg>

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import ScrollLink from './ScrollLink.jsx'
+import NeonMark from './NeonMark.jsx'
 
 const links = [
   { to: 'studio', label: 'Studio' },
@@ -11,8 +12,9 @@ export default function Header() {
   return (
     <header className="site-header">
       <nav aria-label="Site">
-        <Link className="brand" to="/">
-          <img src={`${import.meta.env.BASE_URL}assets/neonfila-pill.svg`} alt="NeonFila" className="brand-pill" width="84" height="22" />
+        <Link className="brand" to="/" aria-label="NeonFila home">
+          <NeonMark size={26} />
+          <span className="brand-word">neonfila</span>
         </Link>
         <ul>
           {links.map(l => (

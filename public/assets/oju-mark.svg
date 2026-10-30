@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <!-- Oju — "the watchful O": bold chalk-white open ring (the letter O / eye outline) + electric-teal pupil (the Live signal). Flat, no gradients, no shadows. -->
+  <!-- Field: Pitch Blue squircle -->
+  <rect x="0" y="0" width="1024" height="1024" rx="230" fill="#0A0E1A"/>
+  <!-- O ring / eye outline: Chalk White -->
+  <circle cx="512" cy="512" r="200" fill="none" stroke="#F8F9FA" stroke-width="110"/>
+  <!-- Pupil: Electric Teal — live signal only -->
+  <circle cx="512" cy="512" r="72" fill="#00F7FE"/>
+  <!-- Eye glint: chalk highlight, up-left of pupil center -->
+  <circle cx="490" cy="490" r="16" fill="#F8F9FA"/>
+</svg>

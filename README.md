@@ -12,7 +12,7 @@ npm run preview  # serve dist/ locally
 
 ## Design
 
-Follows `../docs/DESIGN_LANGUAGE.md` (corporate-site read): serif display + mono labels, hairline sections, Solar Orange as the single accent. The apps pipeline on the home page is data-driven (`src/pages/Home.jsx` → `APPS`) — add apps there, nowhere else.
+Follows `../docs/DESIGN_LANGUAGE.md` (corporate-site read): Clash Display + mono labels, hairline sections, Solar Orange as the single accent. The hero's showpiece is the neon mark igniting (`src/components/NeonMark.jsx`, same geometry as `../assets/brand/neonfila-mark.svg`). The apps pipeline on the home page is data-driven (`src/pages/Home.jsx` → `APPS`) — add apps there, nowhere else.
 
 ## Structure
 
