@@ -87,7 +87,7 @@ export default function Home() {
               </span>{' '}
               <span className="w" style={{ '--i': 3 }}><span className="hlword">solutions</span>.</span>
               <br />
-              <span className="w" style={{ '--i': 4 }}>Fast.</span>
+              <span className="w" style={{ '--i': 4 }}>Fast<span className="enddot">.</span></span>
             </h1>
             <p className="lede">
               NeonFila ships consumer applications — our own bets and client
@@ -111,6 +111,13 @@ export default function Home() {
             {Array.from({ length: 6 }).map((_, i) => (
               <span key={i} className="tape-run">
                 BUILD FAST <i>✶</i> SHIP WEEKLY <i>✶</i> TEST MARKET FIT <i>✶</i> SCALE OR KILL <i>✶</i>{' '}
+              </span>
+            ))}
+          </div>
+          <div className="tape-row tape-row--rev">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <span key={i} className="tape-run tape-run--dim">
+                OUR OWN BETS <i>·</i> CLIENT BUILDS <i>·</i> NO COMMITTEES <i>·</i> WEEKS NOT QUARTERS <i>·</i>{' '}
               </span>
             ))}
           </div>

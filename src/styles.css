@@ -768,3 +768,54 @@ nav ul a::after, .hero-index button::after, .building button::after {
     .is-visible .pipeline::after { transform: scaleY(1); }
     .pipe-node { top: 0.1rem; left: -2rem; }
 }
+
+/* ══ v2.1: the Fable pass — the small things that make the room expensive ══ */
+
+/* the lit full stop: the sentence ends the way the logo does */
+.enddot {
+    color: var(--orange);
+    text-shadow: 0 0 16px rgba(255, 69, 0, 0.8), 0 0 36px rgba(255, 69, 0, 0.45);
+}
+
+/* film grain over everything: kills the flat-digital read of large dark fields */
+body::after {
+    content: ""; position: fixed; inset: 0; z-index: 60;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* statuses become chips: hairline pill in the status's own color */
+.status {
+    justify-self: end;
+    padding: 0.32em 0.85em;
+    border: 1px solid color-mix(in srgb, currentColor 38%, transparent);
+    border-radius: 999px;
+    background: color-mix(in srgb, currentColor 7%, transparent);
+}
+.app-status.status { display: inline-block; justify-self: start; }
+
+/* tape: second row runs the other way, quieter */
+.tape-row--rev { animation-direction: reverse; margin-top: 0.45rem; }
+.tape-run--dim { color: rgba(169, 175, 188, 0.55); }
+.tape-run--dim i { color: rgba(255, 69, 0, 0.55); }
+
+/* the sign answers the hand: hover makes the tube stutter like a real fixture */
+@media (hover: hover) {
+    .stage-sign:hover .neon-mark { animation: flicker 550ms steps(1) 1; }
+}
+
+/* header nav: current-section awareness isn't needed; but give the links room */
+nav ul { gap: 2.1rem; }
+
+/* hero lede: slightly larger, tighter measure — first thing people actually read */
+.lede { font-size: 1.08rem; max-width: 30em; }
+
+@media (prefers-reduced-motion: reduce) {
+    .tape-row--rev { animation: none; }
+}
+
+/* app pages: each mark sits in its own light (teal for Oju, orange for Mapa) */
+.app-site--oju .app-mark { filter: drop-shadow(0 0 18px rgba(0, 247, 254, 0.35)); }
+.app-site--mapa .app-mark { filter: drop-shadow(0 0 18px rgba(255, 69, 0, 0.35)); }
+.app-mark { border-radius: 16px; }
