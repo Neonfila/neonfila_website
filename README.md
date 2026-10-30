@@ -29,7 +29,8 @@ Complete the Privacy Policy and Terms of Service pages, and finalize the apps ta
 
 ## Deployment (live at GitHub Pages)
 
-- Live URL: https://neonfila.github.io/neonfila_website/
+- Live URL: https://neonfila.com (custom domain, `public/CNAME`); also https://neonfila.github.io/neonfila_website/
+- DNS: Cloudflare (registrar + nameservers). Apex A records → GitHub Pages IPs 185.199.108–111.153, `www` CNAME → `neonfila.github.io`, all **DNS only** (grey cloud) so GitHub can issue the HTTPS cert.
 - Pipeline: `.github/workflows/deploy.yml` — pushes to `main` build and publish `dist/` automatically.
 
 ### NOTE: repo was made PUBLIC to enable Pages (2026-10-15)
@@ -45,5 +46,4 @@ Options when we continue:
 3. Keep repo private + host `dist/` elsewhere (Vercel/Netlify free tier, or the
    studio's own hosting) — the build is portable (`npm run build`), zero code change.
 
-Also considered for later: custom domain wiring (CNAME + Pages custom-domain
-settings; needs DNS panel access).
+
