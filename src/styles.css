@@ -819,3 +819,16 @@ nav ul { gap: 2.1rem; }
 .app-site--oju .app-mark { filter: drop-shadow(0 0 18px rgba(0, 247, 254, 0.35)); }
 .app-site--mapa .app-mark { filter: drop-shadow(0 0 18px rgba(255, 69, 0, 0.35)); }
 .app-mark { border-radius: 16px; }
+
+/* app pages: copy beside the product demo (stageshow), demo below on phones */
+.app-top {
+    display: grid; grid-template-columns: minmax(0, 1fr) 400px;
+    gap: 3rem; align-items: start;
+    max-width: 72rem;
+}
+.app-top .app-hero { padding-top: 1rem; }
+.app-demo { width: 100%; max-width: 400px; justify-self: end; animation: rise-in var(--dur-slow) var(--ease-emphasized) 300ms both; }
+@media (max-width: 900px) {
+    .app-top { grid-template-columns: 1fr; gap: 0; }
+    .app-demo { justify-self: center; margin-bottom: 3.5rem; }
+}

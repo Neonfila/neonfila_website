@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import OjuDemo from '../demos/OjuDemo.tsx'
 
 // Oju's own page: trust-first, calm. Teal appears only as the Live signal
 // (status row + live-location row), orange only on SOS — per brand/BRAND_SHEET.md.
@@ -14,17 +15,22 @@ export default function Oju() {
   useEffect(() => { document.title = 'Oju — NeonFila' }, [])
   return (
     <main id="main" className="app-site app-site--oju">
-      <section className="app-hero" aria-labelledby="oju-title">
-        <img src={`${import.meta.env.BASE_URL}assets/oju-mark.svg`} alt="Oju mark — a watchful O with a teal pupil" className="app-mark" width="64" height="64" />
-        <p className="app-kicker">Oju · Yoruba for “eye”</p>
-        <h1 id="oju-title">Your family,<br />in sight.</h1>
-        <p className="app-lede">
-          Oju keeps a guardian circle around the people you love: live location,
-          safe places, and one SOS that reaches everyone at once. Built calm —
-          trust, not panic.
-        </p>
-        <p className="app-status status" data-status="dev">In development</p>
-      </section>
+      <div className="app-top">
+        <section className="app-hero" aria-labelledby="oju-title">
+          <img src={`${import.meta.env.BASE_URL}assets/oju-mark.svg`} alt="Oju mark — a watchful O with a teal pupil" className="app-mark" width="64" height="64" />
+          <p className="app-kicker">Oju · Yoruba for “eye”</p>
+          <h1 id="oju-title">Your family,<br />in sight.</h1>
+          <p className="app-lede">
+            Oju keeps a guardian circle around the people you love: live location,
+            safe places, and one SOS that reaches everyone at once. Built calm —
+            trust, not panic.
+          </p>
+          <p className="app-status status" data-status="dev">In development</p>
+        </section>
+        <div className="app-demo" aria-hidden="true">
+          <OjuDemo />
+        </div>
+      </div>
 
       <section className="app-features" aria-label="What Oju does">
         <dl className="operating">

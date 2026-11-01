@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import MapaDemo from '../demos/MapaDemo.tsx'
 
 // Mapa's own page: playful but strict. Giant display type, one orange accent
 // (the start dot — the trace accent), audio-forward, honest concept status.
@@ -14,17 +15,22 @@ export default function Mapa() {
   useEffect(() => { document.title = 'Mapa — NeonFila' }, [])
   return (
     <main id="main" className="app-site app-site--mapa">
-      <section className="app-hero" aria-labelledby="mapa-title">
-        <img src={`${import.meta.env.BASE_URL}assets/mapa-mark.svg`} alt="Mapa mark — a traced lowercase m with an orange start dot" className="app-mark" width="64" height="64" />
-        <p className="app-kicker">Mapa · Learn &amp; play · Ages 3–7</p>
-        <h1 id="mapa-title">First letters, traced by <span className="mapa-hl">small fingers</span>.</h1>
-        <p className="app-lede">
-          Mapa turns the first letter into the first game: trace a big chalk “m”,
-          hear every sound, meet every number — fully offline, made for small
-          hands and short attention spans.
-        </p>
-        <p className="app-status status" data-status="idea">Concept</p>
-      </section>
+      <div className="app-top">
+        <section className="app-hero" aria-labelledby="mapa-title">
+          <img src={`${import.meta.env.BASE_URL}assets/mapa-mark.svg`} alt="Mapa mark — a traced lowercase m with an orange start dot" className="app-mark" width="64" height="64" />
+          <p className="app-kicker">Mapa · Learn &amp; play · Ages 3–7</p>
+          <h1 id="mapa-title">First letters, traced by <span className="mapa-hl">small fingers</span>.</h1>
+          <p className="app-lede">
+            Mapa turns the first letter into the first game: trace a big chalk “m”,
+            hear every sound, meet every number — fully offline, made for small
+            hands and short attention spans.
+          </p>
+          <p className="app-status status" data-status="idea">Concept</p>
+        </section>
+        <div className="app-demo" aria-hidden="true">
+          <MapaDemo />
+        </div>
+      </div>
 
       <section className="app-features" aria-label="What Mapa does">
         <dl className="operating">

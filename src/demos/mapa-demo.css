@@ -1,0 +1,73 @@
+/* Mapa demo — scoped under .mapa-demo. Playful-color: cream field, thick ink
+   outlines, sticker shadows; orange only on the start dot. */
+.mapa-demo {
+  & .ss-stage {
+    --mapa-ink: #1A1D2B;
+    --mapa-cream: #FFF4E2;
+    --mapa-blue: #2F6BFF;
+    --mapa-orange: #FF4500;
+    background: transparent;
+    overflow: hidden;
+    font-family: "Readex Pro", system-ui, sans-serif;
+  }
+
+  .mapa-phone { position: absolute; top: 40px; }
+  .mapa-screen { position: absolute; inset: 0; background: var(--mapa-cream); color: var(--mapa-ink); }
+
+  .mapa-top { position: absolute; top: 64px; left: 24px; right: 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .mapa-title { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
+  .mapa-word { display: flex; gap: 6px; flex: none; }
+  .mapa-tile {
+    display: grid; place-items: center; width: 30px; height: 34px;
+    border-radius: 9px; border: 2px solid rgba(26, 29, 43, 0.18);
+    font-size: 17px; font-weight: 600; line-height: 1; color: rgba(26, 29, 43, 0.4);
+    transition: background 300ms ease, color 300ms ease, border-color 300ms ease, transform 420ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .mapa-tile[data-now] { border-color: var(--mapa-ink); color: var(--mapa-ink); background: #fff; }
+  .mapa-tile[data-done] { background: var(--mapa-blue); border-color: var(--mapa-ink); color: #fff; transform: translateY(-3px); }
+
+  /* the board: a sticker card, thick outline, hard offset shadow */
+  .mapa-board {
+    position: absolute; top: 124px; left: 20px; right: 20px; height: 366px;
+    background: #fff; border: 3px solid var(--mapa-ink); border-radius: 28px;
+    box-shadow: 0 6px 0 var(--mapa-ink);
+    display: grid; place-items: center;
+  }
+  .mapa-letter { width: 290px; height: 311px; overflow: visible; }
+  .mapa-guide { fill: none; stroke: #EFE4D2; stroke-width: 120; stroke-linecap: round; stroke-linejoin: round; }
+  .mapa-midline { fill: none; stroke: #D9C9AE; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 2 26; }
+  .mapa-ink {
+    fill: none; stroke: var(--mapa-blue); stroke-width: 92; stroke-linecap: round; stroke-linejoin: round;
+    stroke-dasharray: 1 1;
+    transition: stroke 300ms ease, opacity 450ms ease, stroke-width 420ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .mapa-ink[data-done] { stroke-width: 104; }
+  .mapa-ink[data-clearing] { opacity: 0; }
+  .mapa-start { fill: var(--mapa-orange); transition: opacity 200ms ease, transform 200ms ease; transform-box: fill-box; transform-origin: center; }
+  .mapa-start[data-hide] { opacity: 0; transform: scale(0.6); }
+
+  /* the foot: the sound arrives as the payoff, Again is the reset's cause */
+  .mapa-foot { position: absolute; top: 514px; left: 20px; right: 20px; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+  .mapa-chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 18px; border-radius: 999px;
+    background: #fff; color: var(--mapa-ink); border: 3px solid var(--mapa-ink);
+    box-shadow: 0 4px 0 var(--mapa-ink);
+    transition: background 300ms ease, color 300ms ease;
+    font-size: 17px; font-weight: 600; line-height: 1.2; letter-spacing: 0.02em;
+    margin-bottom: 6px;
+  }
+  .mapa-chip[data-on] { background: var(--mapa-blue); color: #fff; }
+  .mapa-tile, .mapa-again { will-change: transform; }
+  .mapa-again {
+    display: inline-flex; align-items: center; gap: 8px; flex: none;
+    padding: 12px 18px; border-radius: 999px;
+    background: #fff; color: var(--mapa-ink); border: 3px solid var(--mapa-ink);
+    box-shadow: 0 4px 0 var(--mapa-ink);
+    font-size: 17px; font-weight: 600; line-height: 1.2;
+    opacity: 0; transform: translateY(-8px);
+    transition: opacity 400ms ease 250ms, transform 500ms cubic-bezier(0.25, 0.8, 0.25, 1) 250ms, box-shadow 120ms ease;
+  }
+  .mapa-again[data-show] { opacity: 1; transform: none; }
+  .mapa-again[data-pressed] { transform: translateY(3px); box-shadow: 0 1px 0 var(--mapa-ink); }
+}
