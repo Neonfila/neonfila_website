@@ -4,7 +4,7 @@ import './oju-demo.css'
 // Oju's landing demo, built to the real app's look (brief from the Oju app
 // session, docs/website-motion-brief.md in the oju repo). One phone, a calm
 // Lagos map with three family pins. A finger lifts the "Where everyone is"
-// sheet; Tolu's arrival at School drops in as a notification and rolls his
+// sheet; Sam's arrival at School drops in as a notification and rolls his
 // row; the SOS card pulses once and Mum's SOS arrives; the finger lowers the
 // sheet back to the map. Rows reset only while the sheet is down and they
 // are below the crop, so nothing rewinds in view.
@@ -12,11 +12,11 @@ import './oju-demo.css'
 // Real strings: the greeting, SOS, Ikeja, Lekki, Where everyone is, the three
 // rows, the two notifications. Orange is SOS only; green is Online only.
 
-type S = { up: number; tolu: 'near' | 'school'; sos: boolean; pulse: number; banner: 0 | 1 | 2; note: 1 | 2 }
-const START: S = { up: 0, tolu: 'near', sos: false, pulse: 0, banner: 0, note: 1 }
+type S = { up: number; sam: 'near' | 'school'; sos: boolean; pulse: number; banner: 0 | 1 | 2; note: 1 | 2 }
+const START: S = { up: 0, sam: 'near', sos: false, pulse: 0, banner: 0, note: 1 }
 
 const NOTES = {
-  1: { title: 'Tolu arrived at School', body: 'Allen Avenue, Ikeja' },
+  1: { title: 'Sam arrived at School', body: 'Allen Avenue, Ikeja' },
   2: { title: 'SOS from Mum', body: 'Open Oju to see the last location.' },
 }
 
@@ -33,7 +33,7 @@ const script = async (a: Act<S>) => {
   a.put({ up: 1 })
   await a.wait(1500)
   a.mark('arrive')
-  a.put({ banner: 1, note: 1, tolu: 'school' })
+  a.put({ banner: 1, note: 1, sam: 'school' })
   await a.wait(2300)
   a.put({ banner: 0 })
   await a.wait(500)
@@ -49,8 +49,8 @@ const script = async (a: Act<S>) => {
   await a.drag(LOW, (_at, _from, t) => a.put({ up: Math.max(0, 1 - t * 0.6) }), { duration: 260 })
   a.put({ up: 0 })
   await a.wait(700)
-  // Tolu's and Mum's rows are below the crop now: their day starts again unseen
-  await a.snap({ tolu: 'near', sos: false, pulse: 0, note: 1 })
+  // Sam's and Mum's rows are below the crop now: their day starts again unseen
+  await a.snap({ sam: 'near', sos: false, pulse: 0, note: 1 })
   await a.move(REST)
   await a.wait(300)
 }
@@ -62,7 +62,7 @@ export default function OjuDemo() {
       height={426}
       compact={{ below: 400, width: 358, height: 420 }}
       initial={START}
-      poster={{ up: 1, tolu: 'school', sos: false, pulse: 0, banner: 1, note: 1 }}
+      poster={{ up: 1, sam: 'school', sos: false, pulse: 0, banner: 1, note: 1 }}
       script={script}
       cursor={{ at: REST, style: 'touch' }}
       className="oju-demo"
@@ -84,12 +84,12 @@ export default function OjuDemo() {
                 <path d="M196 176 L230 296" strokeWidth="7" />
                 <path d="M330 270 L350 380" strokeWidth="6" />
               </g>
-              <circle cx="96" cy="104" r="34" className="oju-fence" data-in={s.tolu === 'school' || undefined} />
+              <circle cx="96" cy="104" r="34" className="oju-fence" data-in={s.sam === 'school' || undefined} />
             </svg>
             <span className="oju-area" style={{ left: 36, top: 148 }}>Ikeja</span>
             <span className="oju-area" style={{ left: 238, top: 370 }}>Lekki</span>
 
-            <span className="oju-pin oju-pin--a" style={{ left: 96, top: 216 }}><Avatar name="Tolu" size={34} /></span>
+            <span className="oju-pin oju-pin--a" style={{ left: 96, top: 216 }}><Avatar name="Sam" size={34} /></span>
             <span className="oju-pin oju-pin--b" style={{ left: 200, top: 236 }}>
               <span className="oju-pulse" />
               <Avatar name="Mariam" size={34} />
@@ -107,9 +107,9 @@ export default function OjuDemo() {
                   meta={<span className="oju-online"><span className="oju-online__dot" />Online</span>}
                 />
                 <Row
-                  lead={<Avatar name="Tolu" size={40} />}
-                  title="Tolu"
-                  subtitle={<Swap id={s.tolu}>{s.tolu === 'school' ? 'At School, Allen Avenue' : 'Near Allen Avenue, Ikeja'}</Swap>}
+                  lead={<Avatar name="Sam" size={40} />}
+                  title="Sam"
+                  subtitle={<Swap id={s.sam}>{s.sam === 'school' ? 'At School, Allen Avenue' : 'Near Allen Avenue, Ikeja'}</Swap>}
                   meta="4.2 km"
                 />
                 <Row
