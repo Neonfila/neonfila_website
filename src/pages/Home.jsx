@@ -6,7 +6,7 @@ import NeonMark from '../components/NeonMark.jsx'
 // apps pipeline: one data-driven table — add apps here, nowhere else.
 // href → the app has its own page; mark → its brand mark, rendered as the icon.
 const APPS = [
-  { name: 'Oju', desc: 'Family location & safety for African circles', status: 'dev', statusLabel: 'In development', href: '/oju', mark: 'oju-mark.svg' },
+  { name: 'Oju', desc: 'Family safety for Nigeria and the diaspora', status: 'dev', statusLabel: 'Android pilot', href: '/oju', mark: 'oju-mark.svg' },
   { name: 'Mapa', desc: 'Kids Learn & Play — offline learning games, ages 3–7', status: 'idea', statusLabel: 'Concept', href: '/mapa', mark: 'mapa-mark.svg' },
   { name: 'Pregnancy Companion', desc: 'Week-by-week, calm and local', status: 'draft', statusLabel: 'Content drafting' },
 ]

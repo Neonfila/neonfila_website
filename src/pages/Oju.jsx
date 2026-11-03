@@ -2,13 +2,12 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import OjuDemo from '../demos/OjuDemo.tsx'
 
-// Oju's own page: trust-first, calm. Teal appears only as the Live signal
-// (status row + live-location row), orange only on SOS — per brand/BRAND_SHEET.md.
+// Oju's own page: trust-first, calm. Copy and status from the Oju app session's
+// website brief (oju repo, docs/website-motion-brief.md). Orange only on SOS.
 const FEATURES = [
-  { term: 'Guardian circles', detail: 'The people who watch over each other — invited by one link.', dot: null },
-  { term: 'Live location', detail: 'Shared only inside your circle, marked by a pulse you can trust.', dot: 'teal' },
-  { term: 'Safe places', detail: 'Home, school, grandma’s — know when the circle arrives and leaves.', dot: null },
-  { term: 'SOS', detail: 'One press, everyone knows. Orange exists for exactly this moment.', dot: 'orange' },
+  { term: 'Your family, together', detail: 'See where everyone is right now, on one calm map.', dot: 'teal' },
+  { term: 'Private by design', detail: 'Only people you approve can see you. Pause anytime.', dot: null },
+  { term: 'Help in one tap', detail: 'Arrivals, check-ins and SOS reach every phone at once.', dot: 'orange' },
 ]
 
 export default function Oju() {
@@ -21,11 +20,14 @@ export default function Oju() {
           <p className="app-kicker">Oju · Yoruba for “eye”</p>
           <h1 id="oju-title">Your family,<br />in sight.</h1>
           <p className="app-lede">
-            Oju keeps a guardian circle around the people you love: live location,
-            safe places, and one SOS that reaches everyone at once. Built calm —
-            trust, not panic.
+            A family-safety app for Nigeria and the diaspora: see where your family
+            is, get told when they arrive or leave, and send SOS. Private, no ads,
+            never sold.
           </p>
-          <p className="app-status status" data-status="dev">In development</p>
+          <div className="app-cta">
+            <p className="app-status status" data-status="dev">Android pilot · iPhone coming</p>
+            <a className="pilot-btn" href="mailto:hello@neonfila.com?subject=Join%20the%20Oju%20pilot">Join the pilot</a>
+          </div>
         </section>
         <div className="app-demo" aria-hidden="true">
           <OjuDemo />
@@ -45,7 +47,7 @@ export default function Oju() {
           ))}
         </dl>
         <p className="app-note">
-          Questions before launch? <a className="mail" href="mailto:hello@neonfila.com">hello@neonfila.com</a>
+          Families are using Oju on Android now. Want in? <a className="mail" href="mailto:hello@neonfila.com?subject=Join%20the%20Oju%20pilot">hello@neonfila.com</a>
         </p>
       </section>
 

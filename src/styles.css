@@ -832,3 +832,16 @@ nav ul { gap: 2.1rem; }
     .app-top { grid-template-columns: 1fr; gap: 0; }
     .app-demo { justify-self: center; margin-bottom: 3.5rem; }
 }
+
+/* app CTA row: status chip beside one action */
+.app-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 2.25rem; }
+.app-cta .app-status { margin-top: 0; }
+.pilot-btn {
+    display: inline-flex; align-items: center; min-height: 44px;
+    padding: 0.6rem 1.3rem; border-radius: 999px;
+    background: var(--chalk); color: var(--ink);
+    font-weight: 600; font-size: 0.95rem; text-decoration: none;
+    transition: transform var(--dur-fast) var(--ease-standard);
+}
+@media (hover: hover) { .pilot-btn:hover { transform: translateY(-2px); } }
+.app-site--oju .app-mark { filter: drop-shadow(0 0 18px rgba(45, 153, 182, 0.45)); }

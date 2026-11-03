@@ -1,83 +1,89 @@
-/* Oju demo — scoped under .oju-demo. Pitch surfaces, chalk text, teal = Live only. */
+/* Oju demo — scoped under .oju-demo. The real app's look: warm off-white,
+   primary teal #2D99B6 (light #01CBEA, deep #155667), orange #FA7319 for SOS
+   only, green for Online only. Outfit for headings, Readex Pro for the rest. */
 .oju-demo {
   & .ss-stage {
-    --ss-accent: #00F7FE;
-    --oju-teal: #00F7FE;
-    --oju-ease: cubic-bezier(0.45, 0, 0.1, 1);
+    --oju-teal: #2D99B6;
+    --oju-teal-deep: #155667;
+    --oju-orange: #FA7319;
+    --oju-green: #22B573;
+    --oju-paper: #FBF8F3;
+    --oju-ink: #12232B;
+    --ss-accent: var(--oju-teal);
     background: transparent;
     overflow: hidden;
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+    font-family: "Readex Pro", system-ui, sans-serif;
   }
 
   /* Pinned, bottom bleed: one gutter from the top, off the bottom */
   .oju-phone { position: absolute; top: 40px; }
+  .oju-screen { position: absolute; inset: 0; background: var(--oju-paper); color: var(--oju-ink); overflow: hidden; }
 
-  .oju-screen { position: absolute; inset: 0; background: #0A0E1A; overflow: hidden; }
-  .oju-map { position: absolute; left: 0; top: 0; width: 393px; height: 470px; display: block; }
-
-  .oju-route {
-    fill: none; stroke: var(--oju-teal); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round;
-    stroke-dasharray: 0.02 0.03; opacity: 0;
-    transition: opacity 600ms ease;
+  .oju-head {
+    position: absolute; left: 0; right: 0; top: 0; height: 112px; z-index: 2;
+    display: flex; align-items: flex-end; justify-content: space-between; gap: 12px;
+    padding: 0 20px 14px;
+    background: var(--oju-paper);
   }
-  .oju-route[data-on] { opacity: 0.55; }
-
-  /* a fence is a quiet ring; it lights when someone is inside it */
-  .oju-fence {
-    fill: rgba(248, 249, 250, 0.03);
-    stroke: rgba(248, 249, 250, 0.22); stroke-width: 1.5; stroke-dasharray: 5 5;
-    transition: fill 500ms ease, stroke 500ms ease;
+  .oju-greet { font-family: "Outfit", "Readex Pro", sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
+  .oju-sos {
+    position: relative; flex: none;
+    display: grid; place-items: center; width: 64px; height: 40px; border-radius: 20px;
+    background: var(--oju-orange); color: #fff;
+    font-size: 15px; font-weight: 600; letter-spacing: 0.04em; line-height: 1;
+    box-shadow: 0 6px 16px rgba(250, 115, 25, 0.28);
+    will-change: transform;
   }
-  .oju-fence[data-in] { fill: rgba(0, 247, 254, 0.1); stroke: rgba(0, 247, 254, 0.75); }
+  /* one pulse per SOS: a ring leaves the card and fades */
+  .oju-sos__ring { position: absolute; inset: 0; border-radius: inherit; border: 2px solid var(--oju-orange); opacity: 0; }
+  .oju-sos__ring[data-go] { animation: oju-ring 900ms cubic-bezier(0.25, 0.8, 0.25, 1) both; }
 
-  .oju-label {
-    position: absolute; transform: translateX(-50%);
-    padding: 3px 9px; border-radius: 999px;
-    background: #161D30; color: #C9CEDA; will-change: transform;
-    font-size: 12px; font-weight: 600; line-height: 1.3;
-  }
+  .oju-map { position: absolute; left: 0; top: 112px; width: 100%; height: 420px; display: block; }
+  .oju-fence { fill: rgba(45, 153, 182, 0.08); stroke: rgba(45, 153, 182, 0.45); stroke-width: 1.5; stroke-dasharray: 4 4; transition: fill 500ms ease, stroke 500ms ease; }
+  .oju-fence[data-in] { fill: rgba(45, 153, 182, 0.18); stroke: var(--oju-teal); }
+  .oju-area { position: absolute; transform: translate(-50%, -50%); font-size: 12px; font-weight: 500; color: #7D8A86; letter-spacing: 0.02em; }
 
-  .oju-pin { position: absolute; box-shadow: 0 0 0 3px #0A0E1A; }
-  .oju-pin--still { opacity: 0.9; }
+  /* pins glide: each drifts slowly on its own clock */
+  .oju-pin { position: absolute; transform: translate(-50%, -50%); }
+  .oju-pin .ss-avatar { box-shadow: 0 0 0 3px #fff, 0 6px 14px rgba(18, 35, 43, 0.22); }
+  .oju-pin--a { animation: oju-drift-a 9s ease-in-out infinite; }
+  .oju-pin--b { animation: oju-drift-b 11s ease-in-out infinite; }
+  .oju-pin--c { animation: oju-drift-c 10s ease-in-out infinite; }
+  .oju-pulse { position: absolute; left: 50%; top: 50%; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; background: var(--oju-green); opacity: 0; animation: oju-live 2.4s ease-out infinite; }
 
-  /* Tobi walks the route: the pin rides an offset path, eased like travel */
-  .oju-walker {
-    position: absolute; left: 0; top: 0;
-    offset-rotate: 0deg; offset-anchor: center;
-    offset-distance: 0%;
-    transition-property: offset-distance;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.45, 1);
-    z-index: 1;
-  }
-  .oju-walker[data-there] { offset-distance: 100%; }
-  .oju-walker .oju-pin { position: relative; box-shadow: 0 0 0 3px #0A0E1A, 0 0 0 5px var(--oju-teal), 0 0 18px rgba(0, 247, 254, 0.55); }
-
-  /* the sheet: the circle, one row live */
+  /* the sheet: lifted by the finger, thrown into place */
   .oju-sheet {
-    position: absolute; left: 0; right: 0; top: 432px; bottom: 0;
+    position: absolute; left: 0; right: 0; top: 236px; bottom: 0; z-index: 1;
     padding: 8px 8px 0;
-    background: #121829;
+    background: #fff;
     border-radius: 24px 24px 0 0;
-    box-shadow: 0 -1px 0 rgba(248, 249, 250, 0.06);
-    color: #F8F9FA;
+    box-shadow: 0 -8px 30px rgba(18, 35, 43, 0.12);
+    transition: transform 500ms cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
   }
-  .oju-grabber { display: block; width: 36px; height: 5px; margin: 0 auto 12px; border-radius: 3px; background: rgba(248, 249, 250, 0.22); }
-  .oju-sheet__title { padding: 0 0 4px; margin: 0 12px; font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
-  .oju-sheet .ss-row__subtitle { color: #A9AFBC; }
-  .oju-sheet .ss-row__meta { color: #A9AFBC; }
-  .oju-live { display: inline-flex; align-items: center; gap: 6px; color: var(--oju-teal); font-weight: 600; }
-  .oju-live__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--oju-teal); }
+  .oju-grabber { display: block; width: 36px; height: 5px; margin: 0 auto 12px; border-radius: 3px; background: #D9DEDC; }
+  .oju-sheet__title { margin: 0 12px; padding-bottom: 4px; font-family: "Outfit", "Readex Pro", sans-serif; font-size: 20px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.25; }
+  .oju-sheet .ss-row__subtitle, .oju-sheet .ss-row__meta { color: #63716D; }
+  .oju-online { display: inline-flex; align-items: center; gap: 6px; color: var(--oju-green); font-weight: 500; }
+  .oju-online__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--oju-green); }
+  .oju-sos-badge { display: inline-block; padding: 3px 9px; border-radius: 999px; background: var(--oju-orange); color: #fff; font-weight: 600; font-size: 13px; line-height: 1.3; }
 
-  /* the banner stays mounted: it drops in and lifts out instead of popping */
+  /* the banner stays mounted: it drops in from just above and fades out */
   .oju-banner.ss-notification[data-banner] {
     animation: none;
     transform: translateY(-18px) scale(0.97);
     opacity: 0;
     transition: transform 520ms cubic-bezier(0.2, 0.9, 0.25, 1), opacity 320ms ease;
+    font-family: "Readex Pro", system-ui, sans-serif;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(18, 35, 43, 0.16);
   }
   .oju-banner.ss-notification[data-banner][data-show] { transform: none; opacity: 1; }
-  /* dark mode banner, as iOS draws it over a dark app */
-  .oju-banner.ss-notification { background: rgba(38, 44, 62, 0.94); color: #F8F9FA; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45); }
-  .oju-banner .ss-notification__time, .oju-banner .ss-notification__body { color: #C9CEDA; }
   .oju-banner .ss-notification__icon img { display: block; width: 38px; height: 38px; border-radius: 9px; }
 }
+
+@keyframes oju-ring { from { opacity: 0.9; transform: scale(1); } to { opacity: 0; transform: scale(1.5, 1.8); } }
+@keyframes oju-live { 0% { opacity: 0.45; transform: scale(1); } 100% { opacity: 0; transform: scale(2.2); } }
+@keyframes oju-drift-a { 0%, 100% { transform: translate(-50%, -50%); } 50% { transform: translate(calc(-50% + 6px), calc(-50% - 4px)); } }
+@keyframes oju-drift-b { 0%, 100% { transform: translate(-50%, -50%); } 50% { transform: translate(calc(-50% - 5px), calc(-50% + 3px)); } }
+@keyframes oju-drift-c { 0%, 100% { transform: translate(-50%, -50%); } 50% { transform: translate(calc(-50% + 4px), calc(-50% + 5px)); } }
