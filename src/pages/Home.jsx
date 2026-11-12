@@ -4,9 +4,11 @@ import ScrollLink from '../components/ScrollLink.jsx'
 import NeonMark from '../components/NeonMark.jsx'
 
 // apps pipeline: one data-driven table — add apps here, nowhere else.
-// href → the app has its own page; mark → its brand mark, rendered as the icon.
+// href → the app has its own page; url → it lives on its own site;
+// mark → its brand mark, rendered as the icon.
 const APPS = [
   { name: 'Oju', desc: 'Family safety for Nigeria and the diaspora', status: 'dev', statusLabel: 'Android pilot', href: '/oju', mark: 'oju-mark.svg' },
+  { name: 'Solafi', desc: 'Solar for homes and businesses, paid monthly', status: 'dev', statusLabel: 'Waitlist open', url: 'https://neonfila.github.io/solafi/', mark: 'solafi-mark.svg' },
   { name: 'Mapa', desc: 'Kids Learn & Play — offline learning games, ages 3–7', status: 'idea', statusLabel: 'Concept', href: '/mapa', mark: 'mapa-mark.svg' },
   { name: 'Pregnancy Companion', desc: 'Week-by-week, calm and local', status: 'draft', statusLabel: 'Content drafting' },
 ]
@@ -153,7 +155,15 @@ export default function Home() {
             <ul className="app-list">
               {APPS.map(a => (
                 <li key={a.name}>
-                  {a.href
+                  {a.url
+                    ? <a href={a.url} target="_blank" rel="noopener" className="app-row app-row--link">
+                        <span className="app-iconcell"><img src={`${import.meta.env.BASE_URL}assets/${a.mark}`} alt="" width="44" height="44" className="app-mark-mini" /></span>
+                        <span className="app-name">{a.name}</span>
+                        <span className="app-desc">{a.desc}</span>
+                        <span className="status" data-status={a.status}>{a.statusLabel}</span>
+                        <span className="app-arrow" aria-hidden="true">↗</span>
+                      </a>
+                    : a.href
                     ? <Link to={a.href} className="app-row app-row--link">
                         <span className="app-iconcell"><img src={`${import.meta.env.BASE_URL}assets/${a.mark}`} alt="" width="44" height="44" className="app-mark-mini" /></span>
                         <span className="app-name">{a.name}</span>
