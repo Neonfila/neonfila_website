@@ -1,0 +1,144 @@
+[
+ {
+  "type": "stage",
+  "text": "Replaying a recorded example"
+ },
+ {
+  "type": "search",
+  "query": "Lagos bus routes GTFS feed LAMATA"
+ },
+ {
+  "type": "source",
+  "title": "OpenStreetMap",
+  "url": "https://www.openstreetmap.org/"
+ },
+ {
+  "type": "search",
+  "query": "Lagos danfo route map open data"
+ },
+ {
+  "type": "search",
+  "query": "Berger bus stop Lagos route to Lagos Island"
+ },
+ {
+  "type": "stage",
+  "text": "Checking what the search results actually contain"
+ },
+ {
+  "type": "stage",
+  "text": "Writing up the findings"
+ },
+ {
+  "type": "verdict",
+  "verdict": {
+   "version": 2,
+   "name": "Rin (Lagos)",
+   "oneLine": "Tell a Lagos commuter which bus gets them from A to B.",
+   "verdict": "dead",
+   "reason": "Failed: Real queries are covered (Coverage test)",
+   "headline": "The only published Lagos transit data covers 8 corridors, and the first stop a real commuter typed was not in it.",
+   "checks": [
+    {
+     "id": "one_job",
+     "law": "Law 1",
+     "title": "One job",
+     "needsLink": false,
+     "result": "pass",
+     "finding": "One sentence, one job: find the bus route between two stops.",
+     "evidence": [],
+     "downgraded": false
+    },
+    {
+     "id": "already_solved",
+     "law": "Law 1",
+     "title": "Not already solved",
+     "needsLink": true,
+     "result": "pass",
+     "finding": "Nothing the commuter already has routes Lagos danfo and BRT trips. Mapping apps have almost no Lagos bus routes to draw on.",
+     "evidence": [
+      {
+       "title": "OpenStreetMap",
+       "url": "https://www.openstreetmap.org/",
+       "fact": "The studio's check found 2 bus route relations for the whole Lagos metro, against 140+ in Nairobi."
+      }
+     ],
+     "downgraded": false
+    },
+    {
+     "id": "data_exists",
+     "law": "Law 2",
+     "title": "Data already exists",
+     "needsLink": true,
+     "result": "pass",
+     "finding": "A published feed exists: the LAMATA GTFS feed, 171 stops on 8 corridors, last dated 2024.",
+     "evidence": [
+      {
+       "title": "OpenStreetMap",
+       "url": "https://www.openstreetmap.org/",
+       "fact": "The only other open source, with 2 Lagos bus routes mapped."
+      }
+     ],
+     "downgraded": false
+    },
+    {
+     "id": "zero_cost",
+     "law": "Law 3",
+     "title": "Near-zero cost per user",
+     "needsLink": false,
+     "result": "pass",
+     "finding": "A static feed read on the device or from one small server. No per-user messages, no per-query AI.",
+     "evidence": [],
+     "downgraded": false
+    },
+    {
+     "id": "coverage",
+     "law": "Coverage test",
+     "title": "Real queries are covered",
+     "needsLink": true,
+     "result": "fail",
+     "finding": "\"Berger\", the first stop typed, is not in the feed. The feed is 8 mainland feeder corridors, not Lagos.",
+     "evidence": [],
+     "downgraded": false
+    }
+   ],
+   "queries": [
+    {
+     "query": "Berger",
+     "result": "miss",
+     "note": "Not in the feed at all."
+    },
+    {
+     "query": "Ojuelegba to Ayilara",
+     "result": "hit",
+     "note": "Both on corridor 1."
+    },
+    {
+     "query": "CMS",
+     "result": "miss",
+     "note": "Island stops are outside the 8 corridors."
+    },
+    {
+     "query": "Oshodi to Lekki",
+     "result": "miss",
+     "note": "No corridor reaches Lekki."
+    },
+    {
+     "query": "Ikeja Along",
+     "result": "untested",
+     "note": ""
+    }
+   ],
+   "competitors": [],
+   "killer": "Data ceiling. No public dataset covers Lagos informal transit, and collecting it means surveys or a partnership: money and time.",
+   "nextTest": "Before any city is picked, type ten stops a real commuter uses into that city's feed and count the misses.",
+   "unknowns": [
+    "Whether LAMATA plans to publish the remaining corridors."
+   ],
+   "killLogLine": "| Rin (Lagos) | Data ceiling: LAMATA feed = 8 corridors; OSM = 2 routes in all of Lagos. Passed the Law, failed coverage |",
+   "idea": "Rin: tell a Lagos commuter which bus route gets them from where they are to where they are going, using published transit data.",
+   "context": "",
+   "researchedAt": "2026-11-16T12:00:00.000Z",
+   "demo": true
+  }
+ }
+]

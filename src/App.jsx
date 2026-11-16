@@ -7,6 +7,7 @@ import Oju from './pages/Oju.jsx'
 import Mapa from './pages/Mapa.jsx'
 import Privacy from './pages/Privacy.jsx'
 import Terms from './pages/Terms.jsx'
+import Gauntlet from './pages/Gauntlet.jsx'
 import Footer from './components/Footer.jsx'
 
 // new page → start at the top (the hash router keeps the old scroll otherwise)
@@ -28,6 +29,8 @@ export default function App() {
         <Route path="/mapa" element={<Mapa />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
+        {/* studio tool, unlisted: not in the nav or the apps table */}
+        <Route path="/gauntlet" element={<Gauntlet />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Footer />
