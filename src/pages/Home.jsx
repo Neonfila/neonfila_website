@@ -8,10 +8,13 @@ import NeonMark from '../components/NeonMark.jsx'
 // mark → its brand mark, rendered as the icon.
 const APPS = [
   { name: 'Oju', desc: 'Family safety for Nigeria and the diaspora', status: 'dev', statusLabel: 'Android pilot', href: '/oju', mark: 'oju-mark.svg' },
-  { name: 'Solafi', desc: 'Solar for homes and businesses, paid monthly', status: 'dev', statusLabel: 'Waitlist open', url: 'https://neonfila.github.io/solafi/', mark: 'solafi-mark.svg' },
   { name: 'Stamp', desc: 'Check if a loan app, bank or investment platform is licensed', status: 'dev', statusLabel: 'Open beta', url: '/stamp/', mark: 'stamp-mark.svg' },
   { name: 'Mapa', desc: 'Kids Learn & Play — offline learning games, ages 3–7', status: 'idea', statusLabel: 'Concept', href: '/mapa', mark: 'mapa-mark.svg' },
-  { name: 'Pregnancy Companion', desc: 'Week-by-week, calm and local', status: 'draft', statusLabel: 'Content drafting' },
+]
+
+// client work: sites we built for other companies. Never listed as our apps.
+const CLIENT_WORK = [
+  { name: 'Solafi', what: 'Website for a solar-financing company', url: 'https://solafi.ng/' },
 ]
 
 const OPERATING = [
@@ -182,6 +185,14 @@ export default function Home() {
                 </li>
               ))}
             </ul>
+            <p className="client-work">
+              Client work:{' '}
+              {CLIENT_WORK.map(c => (
+                <span key={c.name}>
+                  <a href={c.url} target="_blank" rel="noopener">{c.name}</a> — {c.what.toLowerCase()} (website by NeonFila)
+                </span>
+              ))}
+            </p>
           </div>
         </section>
 

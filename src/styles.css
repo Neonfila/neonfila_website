@@ -845,3 +845,8 @@ nav ul { gap: 2.1rem; }
 }
 @media (hover: hover) { .pilot-btn:hover { transform: translateY(-2px); } }
 .app-site--oju .app-mark { filter: drop-shadow(0 0 18px rgba(45, 153, 182, 0.45)); }
+
+/* client work: sites built for other companies, a quiet line under our own apps */
+.client-work { margin-top: 1.5rem; font-family: var(--mono); font-size: 0.8rem; color: var(--chalk-dim); }
+.client-work a { color: var(--chalk); text-decoration: underline; text-underline-offset: 3px; }
+.client-work a:hover { color: var(--orange); }
