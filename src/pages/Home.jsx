@@ -9,7 +9,7 @@ import NeonMark from '../components/NeonMark.jsx'
 const APPS = [
   { name: 'Oju', desc: 'Family safety for Nigeria and the diaspora', status: 'dev', statusLabel: 'Android pilot', href: '/oju', mark: 'oju-mark.svg' },
   { name: 'Solafi', desc: 'Solar for homes and businesses, paid monthly', status: 'dev', statusLabel: 'Waitlist open', url: 'https://neonfila.github.io/solafi/', mark: 'solafi-mark.svg' },
-  { name: 'Shine Your Eye', desc: 'Check if a loan app, bank or investment platform is licensed', status: 'dev', statusLabel: 'Open beta', url: '/shine/', mark: 'shine-mark.svg' },
+  { name: 'Stamp', desc: 'Check if a loan app, bank or investment platform is licensed', status: 'dev', statusLabel: 'Open beta', url: '/stamp/', mark: 'stamp-mark.svg' },
   { name: 'Mapa', desc: 'Kids Learn & Play — offline learning games, ages 3–7', status: 'idea', statusLabel: 'Concept', href: '/mapa', mark: 'mapa-mark.svg' },
   { name: 'Pregnancy Companion', desc: 'Week-by-week, calm and local', status: 'draft', statusLabel: 'Content drafting' },
 ]

@@ -1,9 +1,9 @@
-// Shine Your Eye (neonfila.com/shine/): rebuilds public/shine/data/registers.json
+// Stamp (neonfila.com/stamp/): rebuilds public/stamp/data/registers.json
 // from the regulators' own public registers. The deploy workflow runs this daily
 // before building; if it fails or the tests fail, the committed data is kept.
 //
-//   node scripts/shine/refresh.mjs              CBN banks from scripts/shine/cbn-snapshot.json
-//   node scripts/shine/refresh.mjs --cbn-live   CBN banks from the feed the CBN pages load
+//   node scripts/stamp/refresh.mjs              CBN banks from scripts/stamp/cbn-snapshot.json
+//   node scripts/stamp/refresh.mjs --cbn-live   CBN banks from the feed the CBN pages load
 //
 // Every entry keeps the register it came from and that register's URL, so the
 // page can always say where an answer came from. Nothing here is user-reported.
@@ -257,7 +257,7 @@ for (const raw of revoked.names) {
 registers.push({ title: "CBN revoked microfinance licences (July 2026)", url: revoked.source, count: revoked.names.length, readAt: revoked.date });
 
 // Refuse to publish a register that suddenly shrank: that is a broken page, not news.
-const OUT = join(HERE, "../../public/shine/data/registers.json");
+const OUT = join(HERE, "../../public/stamp/data/registers.json");
 const previous = await readFile(OUT, "utf8").then(JSON.parse).catch(() => null);
 for (const r of registers) {
   const old = previous?.registers.find((p) => p.title === r.title);
@@ -265,4 +265,4 @@ for (const r of registers) {
 }
 await writeFile(OUT, JSON.stringify({ builtAt: today, registers, entries }) + "\n");
 for (const r of registers) console.log(`  ${String(r.count).padStart(4)}  ${r.title} (read ${r.readAt})`);
-console.log(`Wrote public/shine/data/registers.json with ${entries.length} entries`);
+console.log(`Wrote public/stamp/data/registers.json with ${entries.length} entries`);

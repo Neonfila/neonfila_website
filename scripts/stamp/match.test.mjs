@@ -4,10 +4,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { createIndex, words, compact } from "../../public/shine/match.mjs";
+import { createIndex, words, compact } from "../../public/stamp/match.mjs";
 
-const data = JSON.parse(readFileSync(new URL("../../public/shine/data/registers.json", import.meta.url)));
-const { aliases } = JSON.parse(readFileSync(new URL("../../public/shine/data/aliases.json", import.meta.url)));
+const data = JSON.parse(readFileSync(new URL("../../public/stamp/data/registers.json", import.meta.url)));
+const { aliases } = JSON.parse(readFileSync(new URL("../../public/stamp/data/aliases.json", import.meta.url)));
 const search = createIndex(data.entries, aliases);
 
 const regs = (q) => new Set(search(q).results.map((r) => r.regulator));

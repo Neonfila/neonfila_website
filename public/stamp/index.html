@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stamp · Is it licensed?</title>
+  <meta name="description" content="Before you send money: check a loan app, bank, payment or investment platform against the FCCPC, CBN and SEC registers." />
+  <meta property="og:title" content="Stamp · Is it licensed?" />
+  <meta property="og:description" content="Check a loan app, bank or investment platform against the FCCPC, CBN and SEC registers before you send money." />
+  <link rel="icon" href="../assets/stamp-mark.svg" type="image/svg+xml" />
+  <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0b0f17" media="(prefers-color-scheme: dark)" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script type="module" src="app.mjs"></script>
+</head>
+<body>
+  <main>
+    <header class="top">
+      <a class="brand" href="./"><img src="../assets/stamp-mark.svg" alt="" width="30" height="30" />Stamp</a>
+      <h1>Is it licensed?</h1>
+      <p class="lede">Check a loan app, bank or investment platform against the FCCPC, CBN and SEC registers before you send it money.</p>
+    </header>
+
+    <form class="search" role="search" id="form" autocomplete="off">
+      <div class="field">
+        <label for="q" class="sr-only">App or company name</label>
+        <svg class="field-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" /><path d="M16 16l4 4" /></svg>
+        <input id="q" name="q" type="search" autocapitalize="off" spellcheck="false" enterkeyhint="search"
+               placeholder="Search an app or company" disabled
+               role="combobox" aria-expanded="false" aria-controls="suggest" aria-autocomplete="list" />
+        <ul id="suggest" role="listbox" hidden></ul>
+      </div>
+      <button type="submit" disabled>Check</button>
+    </form>
+    <p class="try" id="try" hidden><span>Try</span><button type="button">Kuda</button><button type="button">Cashlawn</button><button type="button">Binance</button><button type="button">Quidax</button></p>
+    <p class="status" id="status" role="status">Loading the registers…</p>
+
+    <section id="answer" aria-live="polite"></section>
+
+    <footer>
+      <details>
+        <summary>Where the answers come from</summary>
+        <ul id="registers"></ul>
+        <p>Only the regulators’ own published lists, copied as written and refreshed daily. Not affiliated with the FCCPC, CBN or SEC. A listing is not an endorsement.</p>
+      </details>
+      <p class="by">A product of <a href="https://neonfila.com" target="_blank" rel="noopener"><svg class="neon-mark" viewBox="14 6 72 90" width="11" height="14" aria-hidden="true"><path d="M26 83 V39 Q26 24 35.5 35.5 L64.5 70.5 Q74 82 74 67 V33" fill="none" stroke="#FF4500" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><circle cx="74" cy="18" r="6.5" fill="currentColor"/></svg>NeonFila</a><span class="beta">Beta</span></p>
+    </footer>
+  </main>
+</body>
+</html>

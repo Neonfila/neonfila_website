@@ -7,9 +7,9 @@ const list = (items) => items.length < 2 ? items.join("") : `${items.slice(0, -1
 
 const VERDICT = {
   warning: { word: "Flagged", line: () => "A regulator has warned about this name. Don’t borrow from it or pay it." },
-  licensed: { word: "Licensed", line: (regs) => `Listed by the ${list(regs)}. Check that the company name on the app’s store page matches one below. Scammers copy real names.` },
-  partial: { word: "Not fully licensed", line: () => "Only conditional, test or fast-track approval so far. Read the details before you trust it with money." },
-  none: { word: "Not found", line: () => "It isn’t on any FCCPC, CBN or SEC list. That isn’t proof it’s illegal, but ask who licenses them before you send money." },
+  licensed: { word: "Licensed", line: (regs) => `On the ${list(regs)} register. Check the company name on the app’s store page matches one below: scammers copy real names.` },
+  partial: { word: "Provisional", line: () => "Only conditional, test or fast-track approval so far. Read the details before you trust it with money." },
+  none: { word: "Not found", line: () => "Not on any FCCPC, CBN or SEC list. That isn’t proof it’s illegal, but ask who licenses them before you send money." },
 };
 
 let search, suggest, active = -1;
@@ -61,7 +61,7 @@ function render(result) {
     </li>`).join("");
   box.innerHTML = `
     <div class="verdict" data-verdict="${result.verdict}">
-      <p class="word"><span class="dot" aria-hidden="true"></span>${v.word}</p>
+      <p class="stamp">${v.word}</p>
       <p class="line">${esc(v.line(regs))}</p>
     </div>
     ${cards ? `<ol class="cards">${cards}</ol>` : ""}
