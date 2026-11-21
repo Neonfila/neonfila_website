@@ -1,10 +1,13 @@
-# Builds the Vite site and publishes dist/ to GitHub Pages on every push to main.
+# Builds the Vite site and publishes dist/ to GitHub Pages on every push to main,
+# and once a day so Shine Your Eye (/shine/) serves fresh regulator data.
 name: Deploy site to Pages
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: "30 5 * * *" # 06:30 in Lagos
 
 permissions:
   contents: read
@@ -28,6 +31,17 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+      # Shine Your Eye: re-read the FCCPC, CBN and SEC registers. If any register
+      # fails, shrinks suddenly, or the name tests fail, keep the committed data.
+      - name: Refresh Shine Your Eye data
+        continue-on-error: true
+        run: |
+          if node scripts/shine/refresh.mjs --cbn-live && node --test scripts/shine/match.test.mjs; then
+            echo "Shine data refreshed"
+          else
+            echo "::warning::Shine Your Eye refresh failed; deploying the committed data"
+            git checkout -- public/shine/data
+          fi
       - run: npm run build
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
