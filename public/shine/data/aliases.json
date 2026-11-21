@@ -1,0 +1,18 @@
+{
+  "_note": "Brand names people type, mapped to the names the registers use. Each alias must point at a register name that exists; npm test checks this. Add one only with a source.",
+  "aliases": {
+    "moniepoint": { "names": ["Teamapt Limited", "Moniepoint MFB"], "why": "Moniepoint was TeamApt; the CBN payments page still lists Teamapt Limited." },
+    "okash": { "names": ["OPAY MICROFINANCE BANK LTD"], "why": "FCCPC lists OKASH APP under OPay's waiver row." },
+    "easemoni": { "names": ["OPAY MICROFINANCE BANK LTD"], "why": "FCCPC lists EASEMONI APP under OPay's waiver row." },
+    "fair money": { "names": ["FAIR MONEY MICROFINANCE BANK", "FAIRMONEY MFB LTD"], "why": "Spelled both ways across the FCCPC and CBN lists." },
+    "gtbank": { "names": ["Guaranty Trust Bank Plc"], "why": "Common short name." },
+    "gtb": { "names": ["Guaranty Trust Bank Plc"], "why": "Common short name." },
+    "gtco": { "names": ["Guaranty Trust Bank Plc"], "why": "Common short name for the group." },
+    "uba": { "names": ["United Bank For Africa Plc"], "why": "Common short name." },
+    "fcmb": { "names": ["First City Monument Bank Plc"], "why": "Common short name." },
+    "first bank": { "names": ["First Bank Nigeria Limited"], "why": "Common short name." },
+    "mtn momo": { "names": ["MOMO PAYMENT SERVICE BANK"], "why": "MTN's payment service bank." },
+    "momo": { "names": ["MOMO PAYMENT SERVICE BANK"], "why": "MTN's payment service bank." },
+    "palmpay": { "names": ["PALMPAY LIMITED", "PalmPay Limited"], "why": "Listed as a company, not an app name, on both lists." }
+  }
+}
