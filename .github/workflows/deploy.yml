@@ -35,6 +35,7 @@ jobs:
       # fails, shrinks suddenly, or the name tests fail, keep the committed data.
       - name: Refresh Stamp data
         continue-on-error: true
+        timeout-minutes: 10
         run: |
           if node scripts/stamp/refresh.mjs --cbn-live && node --test scripts/stamp/match.test.mjs; then
             echo "Stamp data refreshed"

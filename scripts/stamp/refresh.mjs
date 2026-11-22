@@ -27,7 +27,7 @@ const SOURCES = {
 async function get(url, as = "text") {
   for (let attempt = 1; ; attempt++) {
     try {
-      const res = await fetch(url, { headers: { "user-agent": UA } });
+      const res = await fetch(url, { headers: { "user-agent": UA }, signal: AbortSignal.timeout(30_000) });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       return as === "json" ? await res.json() : await res.text();
     } catch (error) {
