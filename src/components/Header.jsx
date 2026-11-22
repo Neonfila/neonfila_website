@@ -4,7 +4,7 @@ import NeonMark from './NeonMark.jsx'
 
 const links = [
   { to: 'studio', label: 'Studio' },
-  { to: 'apps', label: 'Apps' },
+  { to: 'apps', label: 'Work' },
   { to: 'contact', label: 'Contact' },
 ]
 

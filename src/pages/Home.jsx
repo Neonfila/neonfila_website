@@ -3,24 +3,22 @@ import { Link } from 'react-router-dom'
 import ScrollLink from '../components/ScrollLink.jsx'
 import NeonMark from '../components/NeonMark.jsx'
 
-// apps pipeline: one data-driven table — add apps here, nowhere else.
-// href → the app has its own page; url → it lives on its own site;
+// our work: one data-driven table — add projects here, nowhere else.
+// href → the project has its own page; url → it lives on its own site;
 // mark → its brand mark, rendered as the icon.
+// status 'client' = work for another company. Solafi is NOT a NeonFila product:
+// the row credits the website only ("website by NeonFila").
 const APPS = [
-  { name: 'Oju', desc: 'Family safety for Nigeria and the diaspora', status: 'dev', statusLabel: 'Android pilot', href: '/oju', mark: 'oju-mark.svg' },
+  { name: 'Solafi', desc: 'Website for a solar-financing company, designed and built by NeonFila', status: 'client', statusLabel: 'Client project', url: 'https://solafi.ng/', mark: 'solafi-mark.svg' },
   { name: 'Stamp', desc: 'Check if a loan app, bank or investment platform is licensed', status: 'dev', statusLabel: 'Open beta', url: '/stamp/', mark: 'stamp-mark.svg' },
+  { name: 'Oju', desc: 'Family safety for Nigeria and the diaspora', status: 'dev', statusLabel: 'Android pilot', href: '/oju', mark: 'oju-mark.svg' },
   { name: 'Mapa', desc: 'Kids Learn & Play — offline learning games, ages 3–7', status: 'idea', statusLabel: 'Concept', href: '/mapa', mark: 'mapa-mark.svg' },
 ]
 
-// client work: sites we built for other companies. Never listed as our apps.
-const CLIENT_WORK = [
-  { name: 'Solafi', what: 'Website for a solar-financing company', url: 'https://solafi.ng/' },
-]
-
 const OPERATING = [
-  { term: 'Build', detail: 'Lightweight, cross-platform, functional.' },
-  { term: 'Launch', detail: 'App Store and Google Play, immediately.' },
-  { term: 'Decide', detail: 'Traction scales it. Silence kills it.' },
+  { term: 'Understand', detail: 'Start from the real problem and the people who have it.' },
+  { term: 'Build', detail: 'Web and mobile, designed and engineered in-house.' },
+  { term: 'Launch', detail: 'On the web, App Store and Google Play, and we keep it running.' },
 ]
 
 // one intentional transition: sections rise in once, calm, reduced-motion safe.
@@ -91,23 +89,23 @@ export default function Home() {
                   <span className="strike-line" aria-hidden="true" />
                 </span>
               </span>{' '}
-              <span className="w" style={{ '--i': 3 }}><span className="hlword">solutions</span>.</span>
+              <span className="w" style={{ '--i': 3 }}><span className="hlword">solutions</span></span>
               <br />
-              <span className="w" style={{ '--i': 4 }}>Fast<span className="enddot">.</span></span>
+              <span className="w" style={{ '--i': 4 }}>that last<span className="enddot">.</span></span>
             </h1>
             <p className="lede">
-              NeonFila ships consumer applications — our own bets and client
-              projects alike. Built quickly, launched honestly, kept only if
-              they earn their keep.
+              NeonFila designs and builds web and mobile software for Nigerian
+              businesses and the people they serve. Our own products and our
+              clients' projects get the same team and the same care.
             </p>
-            <p className="creed">Build fast. Test market fit. Scale or kill.</p>
+            <p className="creed">Understand. Build. Launch. Support.</p>
           </div>
           <div className="hero-stage" aria-hidden="true">
             <div className="stage-grid" />
             <div className="stage-sign">
               <NeonMark size={400} ignite />
             </div>
-            <p className="stage-caption"><span className="building-dot" /> Lights on · shipping weekly</p>
+            <p className="stage-caption"><span className="building-dot" /> Lights on · Lagos, Nigeria</p>
           </div>
         </section>
 
@@ -116,18 +114,18 @@ export default function Home() {
           <div className="tape-row">
             {Array.from({ length: 6 }).map((_, i) => (
               <span key={i} className="tape-run">
-                BUILD FAST <i>✶</i> SHIP WEEKLY <i>✶</i> TEST MARKET FIT <i>✶</i> SCALE OR KILL <i>✶</i>{' '}
+                WEB &amp; MOBILE <i>✶</i> PRODUCT DESIGN <i>✶</i> ENGINEERING <i>✶</i> SUPPORT AFTER LAUNCH <i>✶</i>{' '}
               </span>
             ))}
           </div>
           <div className="tape-row tape-row--rev">
             {Array.from({ length: 6 }).map((_, i) => (
               <span key={i} className="tape-run tape-run--dim">
-                OUR OWN BETS <i>·</i> CLIENT BUILDS <i>·</i> NO COMMITTEES <i>·</i> WEEKS NOT QUARTERS <i>·</i>{' '}
+                OUR OWN PRODUCTS <i>·</i> CLIENT PROJECTS <i>·</i> MADE IN NIGERIA <i>·</i> BUILT TO LAST <i>·</i>{' '}
               </span>
             ))}
           </div>
-          <p className="visually-hidden">Build fast. Ship weekly. Test market fit. Scale or kill.</p>
+          <p className="visually-hidden">Web and mobile, product design, engineering and support after launch, for our own products and client projects.</p>
         </div>
 
         <section id="studio" className="split" aria-labelledby="studio-title">
@@ -135,9 +133,9 @@ export default function Home() {
           <div>
             <h2 id="studio-title">The studio</h2>
             <p>
-              A standalone sandbox entity: swift decisions, no committee,
-              products shipped without group consensus. Every app is a bet
-              placed in weeks, not quarters.
+              A small software studio in Lagos. We build our own products and
+              take on client projects, from a first sketch to a live app or
+              website, and we stay on after launch to keep it working.
             </p>
             <ol className="pipeline">
               {OPERATING.map((o, i) => (
@@ -155,7 +153,7 @@ export default function Home() {
         <section id="apps" className="apps" aria-labelledby="apps-title">
           <div className="section-number" aria-hidden="true">02</div>
           <div>
-            <h2 id="apps-title">Apps in the pipeline</h2>
+            <h2 id="apps-title">Our work</h2>
             <ul className="app-list">
               {APPS.map(a => (
                 <li key={a.name}>
@@ -185,14 +183,6 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-            <p className="client-work">
-              Client work:{' '}
-              {CLIENT_WORK.map(c => (
-                <span key={c.name}>
-                  <a href={c.url} target="_blank" rel="noopener">{c.name}</a> — {c.what.toLowerCase()} (website by NeonFila)
-                </span>
-              ))}
-            </p>
           </div>
         </section>
 
