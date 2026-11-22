@@ -18,7 +18,8 @@ const APPS = [
 const OPERATING = [
   { term: 'Understand', detail: 'Start from the real problem and the people who have it.' },
   { term: 'Build', detail: 'Web and mobile, designed and engineered in-house.' },
-  { term: 'Launch', detail: 'On the web, App Store and Google Play, and we keep it running.' },
+  { term: 'Launch', detail: 'On the web, App Store and Google Play.' },
+  { term: 'Support', detail: 'We stay on after launch and keep it working.' },
 ]
 
 // one intentional transition: sections rise in once, calm, reduced-motion safe.
@@ -94,10 +95,14 @@ export default function Home() {
               <span className="w" style={{ '--i': 4 }}>that last<span className="enddot">.</span></span>
             </h1>
             <p className="lede">
-              NeonFila designs and builds web and mobile software for Nigerian
-              businesses and the people they serve. Our own products and our
+              NeonFila designs and builds web and mobile software for businesses
+              and the people they serve. Our own products and our
               clients' projects get the same team and the same care.
             </p>
+            <div className="hero-cta">
+              <a className="btn btn--primary" href="mailto:hello@neonfila.com?subject=New%20project">Start a project</a>
+              <ScrollLink to="apps" className="btn btn--ghost">See our work</ScrollLink>
+            </div>
             <p className="creed">Understand. Build. Launch. Support.</p>
           </div>
           <div className="hero-stage" aria-hidden="true">
@@ -105,7 +110,7 @@ export default function Home() {
             <div className="stage-sign">
               <NeonMark size={400} ignite />
             </div>
-            <p className="stage-caption"><span className="building-dot" /> Lights on · Lagos, Nigeria</p>
+            <p className="stage-caption"><span className="building-dot" /> Lights on · Taking new projects</p>
           </div>
         </section>
 
@@ -121,7 +126,7 @@ export default function Home() {
           <div className="tape-row tape-row--rev">
             {Array.from({ length: 6 }).map((_, i) => (
               <span key={i} className="tape-run tape-run--dim">
-                OUR OWN PRODUCTS <i>·</i> CLIENT PROJECTS <i>·</i> MADE IN NIGERIA <i>·</i> BUILT TO LAST <i>·</i>{' '}
+                OUR OWN PRODUCTS <i>·</i> CLIENT PROJECTS <i>·</i> OPEN FOR PROJECTS <i>·</i> BUILT TO LAST <i>·</i>{' '}
               </span>
             ))}
           </div>
@@ -133,7 +138,7 @@ export default function Home() {
           <div>
             <h2 id="studio-title">The studio</h2>
             <p>
-              A small software studio in Lagos. We build our own products and
+              A small software studio. We build our own products and
               take on client projects, from a first sketch to a live app or
               website, and we stay on after launch to keep it working.
             </p>
@@ -190,14 +195,15 @@ export default function Home() {
           <div className="section-number" aria-hidden="true">03</div>
           <div>
             <h2 id="contact-title">Contact</h2>
-            <p className="cta-line">Got a problem worth an app?</p>
+            <p className="cta-line">Have a project? Tell us about it.</p>
             <p>
-              For partnerships, app support, or press:
+              Websites, web apps and mobile apps for businesses. Also for
+              partnerships, app support or press:
             </p>
             <a className="mail mail--big" href="mailto:hello@neonfila.com">hello@neonfila.com</a>
             <p className="building">
               <span className="building-dot" aria-hidden="true" />
-              Currently building <ScrollLink to="apps">Oju</ScrollLink>
+              Just launched <ScrollLink to="apps">Stamp</ScrollLink>, now in open beta
             </p>
           </div>
         </section>
